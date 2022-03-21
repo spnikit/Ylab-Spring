@@ -2,7 +2,7 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface StorageService {
+public interface PlayGameService {
 
-    void load(MultipartFile file);
+    void playGameFromFile(MultipartFile file);
 }
