@@ -1,7 +1,7 @@
 <html xmlns:th="https://thymeleaf.org" lang="ru">
 <head>
     <title>File Uploader</title>
-    <link rel="stylesheet" th:href="@{./styles.css}" />
+    <link rel="stylesheet" th:href="@{./styles.css}"/>
 </head>
 <body>
 <div class="container">
@@ -11,11 +11,17 @@
     </div>
 
 
-    <form method="POST" enctype="multipart/form-data" action="/upload-file">
-        <table>
-            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-        </table>
+    <form id="fileupload-form" method="POST" enctype="multipart/form-data" action="/upload-file">
+        <div class="fieldset-wrapper">
+            <fieldset>
+                <legend>Upload your file</legend>
+                <p class="field field-text">
+                    <label for="file-upload">File to upload:</label>
+                    <input id="file-upload" type="file" name="file"/>
+                </p>
+                <button type="submit" value="Upload">Upload</button>
+            </fieldset>
+        </div>
     </form>
 </div>
 </body>
