@@ -10,6 +10,10 @@
         <h2 th:text="${message}"/>
     </div>
 
+    <div th:if="${files}">
+        <h2 th:text="${files}"/>
+    </div>
+
 
     <form id="fileupload-form" method="POST" enctype="multipart/form-data" action="/upload-file">
         <div class="fieldset-wrapper">
