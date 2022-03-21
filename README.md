@@ -1,5 +1,5 @@
 # Getting Started
-ь## Задание №3*
+## Задание №3*
 
 Реализовано посредством Spring Boot и Spring Web Starter.
 
