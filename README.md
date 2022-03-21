@@ -7,6 +7,9 @@
 
     localhost:8080
 
+
+![](img.png)
+
 После загрузки файла выводится сообщение, что файл загружен.
 
     You successfully uploaded %filename%

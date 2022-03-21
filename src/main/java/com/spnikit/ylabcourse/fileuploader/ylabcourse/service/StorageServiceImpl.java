@@ -26,6 +26,4 @@ public class StorageServiceImpl implements StorageService {
 
         this.playGameService.playGameFromFile(file);
     }
-
-
 }

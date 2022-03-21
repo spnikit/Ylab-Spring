@@ -43,12 +43,4 @@ public class FileUploadController {
         return "redirect:/";
 
     }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?> handleFileException(IllegalArgumentException exception){
-        log.error("Exception when uploading file " + exception.getMessage());
-        return ResponseEntity.noContent().build();
-    }
-
-
 }

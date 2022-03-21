@@ -34,7 +34,7 @@ public class PlayGameServiceImpl implements PlayGameService {
 
             pool.shutdown();
         } catch (IOException e) {
-            log.error("Can't read stream from file");
+            log.error("Can't read stream from file", file.getOriginalFilename());
             e.printStackTrace();
         }
     }
