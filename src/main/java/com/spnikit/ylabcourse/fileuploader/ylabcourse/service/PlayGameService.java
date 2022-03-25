@@ -4,5 +4,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface PlayGameService {
 
-    void playGameFromFile(MultipartFile file);
+    void play(MultipartFile file);
 }

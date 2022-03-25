@@ -1,6 +1,6 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 
-enum Token {
+public enum Token {
     X,
     O
 }

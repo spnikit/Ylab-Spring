@@ -24,6 +24,6 @@ public class StorageServiceImpl implements StorageService {
             throw new IllegalArgumentException("File is empty");
         }
 
-        this.playGameService.playGameFromFile(file);
+        this.playGameService.play(file);
     }
 }

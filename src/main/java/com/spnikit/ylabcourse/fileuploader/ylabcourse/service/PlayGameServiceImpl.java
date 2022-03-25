@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 public class PlayGameServiceImpl implements PlayGameService {
 
     @Override
-    public void playGameFromFile(MultipartFile file) {
+    public void play(MultipartFile file) {
         final var pool = Executors.newFixedThreadPool(1);
 
         try (InputStream inputStream = file.getInputStream()) {

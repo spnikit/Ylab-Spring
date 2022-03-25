@@ -3,7 +3,7 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-class GameBoard {
+public class GameBoard {
     private final String[][] board = new String[][]{
             {"-", "-", "-"},
             {"-", "-", "-"},
@@ -74,4 +74,7 @@ class GameBoard {
         );
     }
 
+    public String[] get1DBoard() {
+        return Arrays.stream(board).flatMap(Stream::of).toArray(String[]::new);
+    }
 }
