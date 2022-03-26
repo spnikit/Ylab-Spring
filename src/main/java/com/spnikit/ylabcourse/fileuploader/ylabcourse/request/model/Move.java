@@ -1,15 +1,6 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model;
 
 
-
-/*
-* "xCoord" : 0,
-          "yCoord" : 0,
-          "_num" : 1,
-          "_playerId" : "1"
-*
-* */
-
 import lombok.Data;
 
 import javax.validation.constraints.Max;

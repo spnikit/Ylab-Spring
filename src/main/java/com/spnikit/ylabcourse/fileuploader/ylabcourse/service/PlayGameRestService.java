@@ -46,14 +46,12 @@ public class PlayGameRestService {
                 move.getPlayerId() : 0;
 
 
-        var moveResponse = new MoveResp();
-
-        moveResponse.setBoard(gameBoard.get1DBoard());
-        moveResponse.setDraw(gameBoard.isDraw());
-        moveResponse.setPlayerNextMoveId(move.getPlayerId() == 1 ? 2 : 1);
-        moveResponse.setWinnerId(gameBoard.isWinner() ? move.getPlayerId() : null);
-
-        return moveResponse;
+        return MoveResp.builder()
+                .board(gameBoard.get1DBoard())
+                .draw(gameBoard.isDraw())
+                .playerNextMoveId(move.getPlayerId() == 1 ? 2 : 1)
+                .winnerId(gameBoard.isWinner() ? move.getPlayerId() : null)
+                .build();
 
     }
 

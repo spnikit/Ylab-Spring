@@ -14,12 +14,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.time.LocalDateTime;
 
 @ControllerAdvice
-@Slf4j
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleAnyException(Exception exception) {
-        log.error("Exception when uploading file " + exception.getMessage());
 
         var errorMessageDescription = exception.getLocalizedMessage();
 
@@ -36,11 +34,14 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-        var errorMessage = ex.getFieldError().getDefaultMessage();
+        var errorMessageDescription = ex.getFieldError().getDefaultMessage();
 
-        if (errorMessage == null) {
-            errorMessage = ex.toString();
+        if (errorMessageDescription == null) {
+            errorMessageDescription = ex.toString();
         }
+
+        var errorMessage = new ErrorMessage(errorMessageDescription,
+                LocalDateTime.now().withNano(0));
 
         return ResponseEntity.badRequest().body(errorMessage);
     }
