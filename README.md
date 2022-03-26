@@ -1,19 +1,7 @@
-# Getting Started
-## Задание №3*
-
-Реализовано посредством Spring Boot и Spring Web Starter.
-
-Загрузка файла осуществляется через форму по адресу
-
-    localhost:8080
+# Getting Started YLAB
 
 
-![](img.png)
+[lesson 5 README](LESSON5_README.MD)
 
-После загрузки файла выводится сообщение, что файл загружен.
+[lesson 4 README](LESSON4_README.MD)
 
-    You successfully uploaded %filename%
-
-Игра воспроизводится в консоли на стороне сервера в отдельном потоке.
-
-![Крестики-Нолики](ticTacToeGameTerminal.png)
