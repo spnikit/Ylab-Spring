@@ -7,7 +7,7 @@ import lombok.Data;
 public class MoveResp {
     private String[] board;
     private int playerNextMoveId;
-    private int winnerId;
+    private Integer winnerId;
     private boolean draw;
 
 }

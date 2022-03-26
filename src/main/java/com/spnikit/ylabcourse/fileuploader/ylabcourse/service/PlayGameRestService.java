@@ -4,7 +4,10 @@ import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.GameBoard;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.Token;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.response.model.MoveResp;
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.shared.Utils;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class PlayGameRestService {
@@ -13,8 +16,11 @@ public class PlayGameRestService {
 
     public MoveResp makeMove(Move move) {
 
-        var pointX = move.getPointX();
-        var pointY = move.getPointY();
+        Objects.requireNonNull(move, "move object can't be null");
+
+        var coordinates = Utils.convertNumpadValuesToXYCoordinates(move.getCellNumber());
+        var pointX = coordinates[0];
+        var pointY = coordinates[1];
         var token = move.getPlayerId() == 1 ? Token.X : Token.O;
 
         if (gameBoard.isWinner()) {
@@ -22,7 +28,7 @@ public class PlayGameRestService {
         }
 
         if (gameBoard.isDraw()) {
-            throw new IllegalArgumentException("Game is over! The resul is draw");
+            throw new IllegalArgumentException("Game is over! The result is draw");
         }
 
         if (currentPlayerToMove != token) {
@@ -45,7 +51,7 @@ public class PlayGameRestService {
         moveResponse.setBoard(gameBoard.get1DBoard());
         moveResponse.setDraw(gameBoard.isDraw());
         moveResponse.setPlayerNextMoveId(move.getPlayerId() == 1 ? 2 : 1);
-        moveResponse.setWinnerId(gameBoard.isWinner() ? move.getPlayerId() : 0);
+        moveResponse.setWinnerId(gameBoard.isWinner() ? move.getPlayerId() : null);
 
         return moveResponse;
 
