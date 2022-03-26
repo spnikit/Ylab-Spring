@@ -1,6 +1,6 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.service;
 
-import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.Game;
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.GameFromFile;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.Gameplay;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.GameplayToJsonMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 
 @Service
 @Slf4j
-public class PlayGameServiceImpl implements PlayGameService {
+public class PlayGameFromFileServiceImpl implements PlayGameFromFileService {
 
     @Override
     public void play(MultipartFile file) {
@@ -27,7 +27,7 @@ public class PlayGameServiceImpl implements PlayGameService {
 
             pool.submit(() -> {
 
-                gameplay.ifPresentOrElse(game -> new Game().replay(game),
+                gameplay.ifPresentOrElse(game -> new GameFromFile().replay(game),
                         () -> log.error("Gameplay object is not valid or not present"));
 
             });

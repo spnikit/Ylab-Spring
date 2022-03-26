@@ -3,7 +3,7 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 class GameplayConstructor implements PlayerMoved, PlayerRegistered, GameStarted, GameEnded {
     private final Gameplay gameplay = new Gameplay();
 
-    public GameplayConstructor(Game game) {
+    public GameplayConstructor(GameWithRestService game) {
         game.addGameEndListener(this);
         game.addGameStartListener(this);
         game.addPlayerRegisteredListener(this);

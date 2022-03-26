@@ -6,13 +6,13 @@ public class Utils {
 
         switch (numpadVal) {
             case 1 -> {
-                return new int[]{0, 2};
+                return new int[]{0, 0};
             }
             case 2 -> {
-                return new int[]{1, 2};
+                return new int[]{1, 0};
             }
             case 3 -> {
-                return new int[]{2, 2};
+                return new int[]{2, 0};
             }
             case 4 -> {
                 return new int[]{0, 1};
@@ -24,13 +24,13 @@ public class Utils {
                 return new int[]{2, 1};
             }
             case 7 -> {
-                return new int[]{0, 0};
+                return new int[]{0, 2};
             }
             case 8 -> {
-                return new int[]{1, 0};
+                return new int[]{1, 2};
             }
             case 9 -> {
-                return new int[]{2, 0};
+                return new int[]{2, 2};
             }
             default -> {
                 throw new IllegalArgumentException("value should be from 1 to 9");

@@ -4,15 +4,17 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.controller;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.service.StorageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Slf4j
-@RequestMapping
+@RequestMapping("file")
 @Controller
 public class FileUploadController {
 
@@ -30,7 +32,7 @@ public class FileUploadController {
         return "uploadForm";
     }
 
-    @PostMapping("/upload-file")
+    @PostMapping("upload")
     public String handleFormFileUpload(@RequestParam MultipartFile file,
                                        RedirectAttributes redirectAttributes){
 
@@ -40,7 +42,7 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-        return "redirect:/";
+        return "redirect:/file";
 
     }
 }

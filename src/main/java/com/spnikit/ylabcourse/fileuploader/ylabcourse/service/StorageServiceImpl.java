@@ -11,10 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class StorageServiceImpl implements StorageService {
 
-    private final PlayGameService playGameService;
+    private final PlayGameFromFileService playGameService;
 
     @Autowired
-    public StorageServiceImpl(PlayGameService playGameService) {
+    public StorageServiceImpl(PlayGameFromFileService playGameService) {
         this.playGameService = playGameService;
     }
 

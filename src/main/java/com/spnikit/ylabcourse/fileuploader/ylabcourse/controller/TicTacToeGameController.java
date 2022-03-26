@@ -2,14 +2,12 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.controller;
 
 
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.response.model.NewGameResp;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.service.PlayGameRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -30,5 +28,15 @@ public class TicTacToeGameController {
         var responseBody = playGameRestService.makeMove(move);
 
         return ResponseEntity.ok().body(responseBody);
+    }
+
+    @GetMapping(value = "/new")
+    public ResponseEntity<NewGameResp> restartGame(){
+
+        playGameRestService.setNewGame();
+
+        var response = new NewGameResp("New Game created!");
+
+        return ResponseEntity.ok().body(response);
     }
 }
