@@ -1,5 +1,8 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.shared.Utils;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
@@ -8,7 +11,8 @@ import java.util.*;
 public class Game {
     private Player player1;
     private Player player2;
-    private GameBoard board;
+    private GameBoard board = new GameBoard();
+    private Token currentPlayerToMove = Token.X;
     private final IOManager manager = new IOManager();
     private final List<PlayerMoved> playerMovedListeners = new ArrayList<>();
     private final List<PlayerRegistered> playerRegisteredListeners = new ArrayList<>();
@@ -30,6 +34,19 @@ public class Game {
 
     public void addGameEndListener(GameEnded listener) {
         gameEndListeners.add(listener);
+    }
+
+    public void notifyPlayerMovedListeners(int x, int y, Player p, int moveNumber) {
+        playerMovedListeners.forEach(listener -> listener.onPlayerMoved(x, y, p, moveNumber));
+    }
+    public void notifyPlayerRegisteredListeners(Player p) {
+        playerRegisteredListeners.forEach(listener -> listener.onPlayerRegister(p));
+    }
+    public void notifyGameStartListeners() {
+        gameStartListeners.forEach(GameStarted::onGameStart);
+    }
+    public void notifyGameEndListeners(Player p) {
+        gameEndListeners.forEach(listener -> listener.onGameEnd(p));
     }
 
 
@@ -242,5 +259,38 @@ public class Game {
         }
     }
 
+    public void playWithRestService(Move move){
+        var coordinates = Utils.convertNumpadValuesToXYCoordinates(move.getCellNumber());
+        var pointX = coordinates[0];
+        var pointY = coordinates[1];
+        var token = move.getPlayerId() == 1 ? Token.X : Token.O;
+
+
+        if (board.isWinner()) {
+            throw new IllegalArgumentException("Game is over! The winner is playerId " +
+                    (currentPlayerToMove == Token.X ? 1 : 2));
+        }
+
+        if (board.isDraw()) {
+            throw new IllegalArgumentException("Game is over! The result is draw");
+        }
+
+        if (currentPlayerToMove != token) {
+            throw new IllegalArgumentException("Now another player's turn");
+        }
+
+        board.acceptMove(pointX, pointY, token);
+
+        currentPlayerToMove = move.getPlayerId() == 1 ? Token.O : Token.X;
+
+        board.printBoard();
+
+        var winner = board.isWinner() ?
+                move.getPlayerId() : 0;
+    }
+
+    public GameBoard getBoard(){
+        return board;
+    }
 
 }
