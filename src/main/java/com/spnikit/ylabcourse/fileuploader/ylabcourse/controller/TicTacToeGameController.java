@@ -5,6 +5,7 @@ import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.response.model.MoveResp;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.service.PlayGameRestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class TicTacToeGameController {
         this.playGameRestService = playGameRestService;
     }
 
-    @PostMapping(value = "/move", consumes = "application/json")
+    @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MoveResp> processMove(@RequestBody Move move){
 
         var responseBody = playGameRestService.makeMove(move);
