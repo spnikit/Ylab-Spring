@@ -14,7 +14,7 @@ public class GameFromFile extends AbstractGame{
         }
     }
 
-    public void replay(Gameplay gameplay) {
+    public void play(Gameplay gameplay) {
 
         Objects.requireNonNull(gameplay, "Gameplay object can't be null");
 

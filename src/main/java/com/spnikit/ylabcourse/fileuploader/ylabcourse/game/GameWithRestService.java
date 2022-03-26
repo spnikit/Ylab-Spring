@@ -9,7 +9,7 @@ public class GameWithRestService extends AbstractGame {
     private Token currentPlayerToMove = Token.X;
     private int moveNumber;
 
-    public void playWithRestService(Move move) {
+    public void play(Move move) {
         var coordinates = Utils.convertNumpadValuesToXYCoordinates(move.getCellNumber());
         var pointX = coordinates[0];
         var pointY = coordinates[1];

@@ -16,7 +16,7 @@ public class PlayGameRestService {
 
         Objects.requireNonNull(move, "move object can't be null");
 
-        game.playWithRestService(move);
+        game.play(move);
 
         var gameBoard = game.getBoard();
 

@@ -25,12 +25,8 @@ public class PlayGameFromFileServiceImpl implements PlayGameFromFileService {
 
             Optional<Gameplay> gameplay = new GameplayToJsonMapper().readFromStream(inputStream);
 
-            pool.submit(() -> {
-
-                gameplay.ifPresentOrElse(game -> new GameFromFile().replay(game),
-                        () -> log.error("Gameplay object is not valid or not present"));
-
-            });
+            pool.submit(() -> gameplay.ifPresentOrElse(game -> new GameFromFile().play(game),
+                    () -> log.error("Gameplay object is not valid or not present")));
 
             pool.shutdown();
         } catch (IOException e) {
