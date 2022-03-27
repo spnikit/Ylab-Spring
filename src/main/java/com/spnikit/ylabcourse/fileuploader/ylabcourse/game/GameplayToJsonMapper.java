@@ -3,6 +3,7 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.Optional;
 
+
+@Slf4j
 public class GameplayToJsonMapper implements GameplayToFileMapper<Gameplay> {
     ObjectMapper mapper;
 
@@ -24,7 +27,7 @@ public class GameplayToJsonMapper implements GameplayToFileMapper<Gameplay> {
         try {
             mapper.writeValue(new File(Objects.requireNonNull(filename)), Objects.requireNonNull(gameplay));
         } catch (IOException e) {
-            System.out.println("can't write JSON to file " + filename);
+            log.error("can't write JSON to file " + filename);
             e.printStackTrace();
         }
     }
@@ -34,7 +37,7 @@ public class GameplayToJsonMapper implements GameplayToFileMapper<Gameplay> {
         try {
             gameplay = Optional.of(mapper.readValue(new File(Objects.requireNonNull(filename)), Gameplay.class));
         } catch (IOException e) {
-            System.out.println("can't read file " + filename);
+            log.error("can't read file " + filename);
             gameplay = Optional.empty();
             e.printStackTrace();
         }
@@ -47,7 +50,7 @@ public class GameplayToJsonMapper implements GameplayToFileMapper<Gameplay> {
         try {
             gameplay = Optional.of(mapper.readValue(Objects.requireNonNull(stream), Gameplay.class));
         } catch (IOException e) {
-            System.out.println("can't read file from stream ");
+            log.error("can't read file from stream ");
             gameplay = Optional.empty();
             e.printStackTrace();
         }

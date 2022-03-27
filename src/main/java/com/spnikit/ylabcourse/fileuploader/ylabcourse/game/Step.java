@@ -1,11 +1,13 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 
-//public record Step(int number, int xCoord, int yCoord, String playerNumber) {
-//}
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class Step{
 
     private int number;
@@ -13,14 +15,6 @@ public class Step{
     private int yCoord;
     private String playerNumber;
 
-    public Step(){}
-
-    public Step(int number, int xCoord, int yCoord, String playerNumber) {
-        this.number = number;
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
-        this.playerNumber = playerNumber;
-    }
 
     @JsonGetter("_num")
     public int getNumber() {

@@ -3,18 +3,18 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
-class Player {
+@NoArgsConstructor
+public class Player {
 
     private int id;
     private String name;
     private int numberOfMoves = 0;
     private Token token;
 
-    public Player() {
-    }
 
     public Player(String name, PlayerNumber playerNumber) {
         this.name = name;

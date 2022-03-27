@@ -12,9 +12,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
 @SpringBootTest
@@ -36,19 +37,33 @@ class YlabCourseApplicationTests {
     public void shouldReturnValidMoveResponseObject() throws Exception {
 
         this.mockMvc.perform(
-                MockMvcRequestBuilders.post("/gameplay/move")
-                        .content(asJsonString(new Move(1, 1)))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.board").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.playerNextMoveId").value(2))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.winnerId").isEmpty())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.draw").value(false));
+                        post("/gameplay/move")
+                                .content(asJsonString(new Move(1, 1)))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.board").isArray())
+                .andExpect(jsonPath("$.playerNextMoveId").value(2))
+                .andExpect(jsonPath("$.winnerId").isEmpty())
+                .andExpect(jsonPath("$.draw").value(false));
     }
 
 
-    private static String asJsonString(Object obj){
+    @Test
+    public void shouldReturnBadRequestWithMessage() throws Exception {
+        this.mockMvc.perform(
+                        post("/gameplay/move")
+                                .content(asJsonString(new Move(10, 1)))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").exists())
+                .andExpect(jsonPath("$.localDate").exists());
+
+    }
+
+
+    private static String asJsonString(Object obj) {
 
         try {
             return new ObjectMapper().writeValueAsString(obj);

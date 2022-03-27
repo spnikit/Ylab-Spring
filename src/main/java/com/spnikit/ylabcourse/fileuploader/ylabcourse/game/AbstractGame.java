@@ -6,7 +6,9 @@ import java.util.List;
 public abstract class AbstractGame {
     protected Player player1;
     protected Player player2;
+    protected Player winner;
     protected GameBoard board = new GameBoard();
+
 
     protected final List<PlayerMoved> playerMovedListeners = new ArrayList<>();
     protected final List<PlayerRegistered> playerRegisteredListeners = new ArrayList<>();
@@ -41,5 +43,35 @@ public abstract class AbstractGame {
     }
     public void notifyGameEndListeners(Player p) {
         gameEndListeners.forEach(listener -> listener.onGameEnd(p));
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public AbstractGame setWinner(Player winner) {
+        this.winner = winner;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractGame{" +
+                "player1=" + player1 +
+                ", player2=" + player2 +
+                ", board=" + board +
+                ", playerMovedListeners=" + playerMovedListeners +
+                ", playerRegisteredListeners=" + playerRegisteredListeners +
+                ", gameStartListeners=" + gameStartListeners +
+                ", gameEndListeners=" + gameEndListeners +
+                '}';
     }
 }

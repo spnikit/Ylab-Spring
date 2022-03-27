@@ -1,9 +1,11 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.game;
 
-class GameplayConstructor implements PlayerMoved, PlayerRegistered, GameStarted, GameEnded {
+import java.util.Optional;
+
+public class GameplayConstructor implements PlayerMoved, PlayerRegistered, GameStarted, GameEnded {
     private final Gameplay gameplay = new Gameplay();
 
-    public GameplayConstructor(GameWithRestService game) {
+    public GameplayConstructor(AbstractGame game) {
         game.addGameEndListener(this);
         game.addGameStartListener(this);
         game.addPlayerRegisteredListener(this);
@@ -11,8 +13,13 @@ class GameplayConstructor implements PlayerMoved, PlayerRegistered, GameStarted,
     }
 
 
-    public Gameplay getGameplay() {
-        return this.gameplay;
+    public Optional<Gameplay> getGameplay() {
+
+        if(gameplay.getSteps().size() <= 0){
+            return Optional.empty();
+        }
+
+        return Optional.of(this.gameplay);
     }
 
     @Override
