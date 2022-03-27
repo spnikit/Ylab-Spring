@@ -1,6 +1,7 @@
 package com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.Max;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Data
+@AllArgsConstructor
 public class Move {
     @NotNull
     @Min(value = 1, message = "cell number must be from 1 to 9")
