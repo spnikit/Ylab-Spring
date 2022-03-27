@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.controller.TicTacToeGameController;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.PlayerRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,24 @@ class YlabCourseApplicationTests {
         Assertions.assertNotNull(controller);
     }
 
+
+
+    @Test
+    public void shouldReturnValidPlayerJsonWhenRegistered() throws Exception {
+
+        this.mockMvc.perform(
+                        post("/gameplay/register/player")
+                                .content(asJsonString(new PlayerRequest("Serge", "X")))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._id").value(1))
+                .andExpect(jsonPath("$._name").value("Serge"))
+                .andExpect(jsonPath("$._symbol").value("X"));
+
+    }
+
+
     @Test
     public void shouldReturnValidMoveResponseObject() throws Exception {
 
@@ -61,6 +80,8 @@ class YlabCourseApplicationTests {
                 .andExpect(jsonPath("$.localDate").exists());
 
     }
+
+
 
 
     private static String asJsonString(Object obj) {
