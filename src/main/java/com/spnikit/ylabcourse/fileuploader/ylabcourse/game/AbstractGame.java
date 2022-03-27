@@ -57,9 +57,8 @@ public abstract class AbstractGame {
         return winner;
     }
 
-    public AbstractGame setWinner(Player winner) {
+    public void setWinner(Player winner) {
         this.winner = winner;
-        return this;
     }
 
     @Override

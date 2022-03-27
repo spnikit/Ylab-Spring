@@ -11,7 +11,7 @@ import java.util.Objects;
 @Service
 public class PlayGameRestService {
 
-    private GameWithRestService game = new GameWithRestService();
+    private GameWithRestApi game = new GameWithRestApi();
     private final GameplayConstructor gameplayConstructor = new GameplayConstructor(game);
 
     public MoveResp makeMove(Move move) {
@@ -32,7 +32,7 @@ public class PlayGameRestService {
     }
 
     public void setNewGame() {
-        game = new GameWithRestService();
+        game = new GameWithRestApi();
     }
 
     public Gameplay getGameplay() {

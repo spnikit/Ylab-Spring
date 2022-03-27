@@ -4,7 +4,7 @@ import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.shared.Utils;
 
 
-public class GameWithRestService extends AbstractGame {
+public class GameWithRestApi extends AbstractGame {
 
 
     private int moveNumber = 1;
@@ -34,6 +34,7 @@ public class GameWithRestService extends AbstractGame {
         notifyPlayerMovedListeners(pointX, pointY, currentPlayerToMove, moveNumber);
 
         if (board.isWinner()) {
+            this.setWinner(currentPlayerToMove);
             notifyGameEndListeners(currentPlayerToMove);
         }
         moveNumber++;

@@ -2,12 +2,12 @@ package com.spnikit.ylabcourse.fileuploader.ylabcourse.controller;
 
 
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.Gameplay;
+import com.spnikit.ylabcourse.fileuploader.ylabcourse.game.Player;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.request.model.PlayerRequest;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.response.model.MoveResp;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.response.model.NewGameResp;
 import com.spnikit.ylabcourse.fileuploader.ylabcourse.service.PlayGameRestService;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +52,7 @@ public class TicTacToeGameController {
     }
 
     @PostMapping("/register/player")
-    public ResponseEntity<?> registerPlayer(@Valid @RequestBody PlayerRequest player){
+    public ResponseEntity<Player> registerPlayer(@Valid @RequestBody PlayerRequest player){
 
         var playerRegistered = this.playGameRestService.registerPlayer(player);
 
