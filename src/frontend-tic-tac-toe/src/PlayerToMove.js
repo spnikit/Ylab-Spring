@@ -8,7 +8,7 @@ function PlayerToMove({id, name}) {
 
     return (
         <Tag  mb="1rem" variant='outline' colorScheme='blue' size="lg">
-            <TagLabel>Ход игрока #{id} {name} </TagLabel>
+            <TagLabel> Player #{id} {name} move</TagLabel>
         </Tag>
     );
 }
