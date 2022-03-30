@@ -17,8 +17,11 @@
     localhost:8080/gameplay
 
 Запуск Front части осуществляется из папки `frontend-tic-tac-toe`
-вводом команды
 
+```bash
+npm install
+````
+ и
 ```bash
 npm start
 ````
