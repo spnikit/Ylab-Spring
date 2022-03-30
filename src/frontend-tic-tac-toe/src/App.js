@@ -1,10 +1,11 @@
 import './App.css';
 import Cell from "./Cell";
 import CellGrid from "./CellGrid";
-import {Button, Container} from '@chakra-ui/react'
+import {Box, Button, Container} from '@chakra-ui/react'
 import {useState} from "react";
 import PlayerInput from "./PlayerInput";
 import AlertBlock from "./AlertBlock";
+import PlayerToMove from "./PlayerToMove";
 
 function App() {
     const [state, setState] = useState({
@@ -97,7 +98,8 @@ function App() {
 
     const displayPlayerInput = () => {
         if ((!(state.player1 && state.player2))) {
-            return <PlayerInput setPlayerName={setPlayerName}/>;
+            const playerNumber = state.player1 ? 2 : 1;
+            return <PlayerInput setPlayerName={setPlayerName} number={playerNumber}/>;
         }
     }
 
@@ -118,11 +120,14 @@ function App() {
                     <Button onClick={startNewGame} colorScheme="teal" mt="1rem">Start New Game</Button>
                 </>
             )
-        } else if(state.player1 && state.player2) {
+        } else if (state.player1 && state.player2) {
             return (
-                <CellGrid>
-                    {cells.map(cell => <Cell key={cell} id={state.idToMove} makeMove={() => makeMove(cell)}/>)}
-                </CellGrid>
+                <Box textAlign="center">
+                    <PlayerToMove id={state.idToMove}/>
+                    <CellGrid>
+                        {cells.map(cell => <Cell key={cell} id={state.idToMove} makeMove={() => makeMove(cell)}/>)}
+                    </CellGrid>
+                </Box>
             );
         }
     }

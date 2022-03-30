@@ -4,7 +4,7 @@ import {Box} from '@chakra-ui/react'
 import {useState} from "react";
 
 
-function PlayerInput({setPlayerName}) {
+function PlayerInput({setPlayerName, number}) {
 
     const [name, setName] = useState("");
 
@@ -20,7 +20,7 @@ function PlayerInput({setPlayerName}) {
 
     return (
         <Box display="flex" mb="2rem">
-            <Input value={name} onChange={handleChange} placeholder="Enter Player's name"/>
+            <Input value={name} onChange={handleChange} placeholder={`Enter Player ${number} name`}/>
             <Button onClick={handleBtnClick} display="inline-block" colorScheme='blue' ml="1rem">OK</Button>
         </Box>
     );
