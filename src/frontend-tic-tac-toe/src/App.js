@@ -1,11 +1,9 @@
 import './App.css';
-import Cell from "./Cell";
-import CellGrid from "./CellGrid";
-import {Box, Button, Container} from '@chakra-ui/react'
+import {Container} from '@chakra-ui/react'
 import {useState} from "react";
-import PlayerInput from "./PlayerInput";
 import AlertBlock from "./AlertBlock";
-import PlayerToMove from "./PlayerToMove";
+import GameBoard from "./GameBoard";
+import DisplayPlayerInput from "./DisplayPlayerInput";
 
 function App() {
     const [state, setState] = useState({
@@ -17,7 +15,6 @@ function App() {
         message: ""
     });
 
-    const cells = Array.from(Array(9), (_, i) => i + 1);
 
     const makeMove = (cellNumber) => {
         const resource = "http://localhost:8080/gameplay/move";
@@ -96,51 +93,14 @@ function App() {
 
     }
 
-    const displayPlayerInput = () => {
-        if ((!(state.player1 && state.player2))) {
-            const playerNumber = state.player1 ? 2 : 1;
-            return <PlayerInput setPlayerName={setPlayerName} number={playerNumber}/>;
-        }
-    }
-
-    const displayBoard = () => {
-        const winnerName = state.winner === 1 ?
-            state.player1 :
-            state.player2;
-
-        const message = state.winner ? `Game over! Winner is  ${winnerName}`
-            : "Game is over. Result is DRAW";
-
-        const status = state.winner ? "success" : "info";
-
-        if (state.winner || state.draw) {
-            return (
-                <>
-                    <AlertBlock status={status} message={message}/>
-                    <Button onClick={startNewGame} colorScheme="teal" mt="1rem">Start New Game</Button>
-                </>
-            )
-        } else if (state.player1 && state.player2) {
-            return (
-                <Box textAlign="center">
-                    <PlayerToMove id={state.idToMove}/>
-                    <CellGrid>
-                        {cells.map(cell => <Cell key={cell} id={state.idToMove} makeMove={() => makeMove(cell)}/>)}
-                    </CellGrid>
-                </Box>
-            );
-        }
-    }
-
-
     return (
         <Container centerContent mt="3rem">
 
-            {displayPlayerInput()}
+            <DisplayPlayerInput {...state} setPlayerName={setPlayerName} />
 
             {state.message && <AlertBlock message={state.message} status="error"/>}
 
-            {displayBoard()}
+            <GameBoard {...state} makeMove={makeMove} startNewGame={startNewGame} />
 
         </Container>
 
