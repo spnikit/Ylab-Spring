@@ -17,6 +17,7 @@ import javax.validation.Valid;
 
 @RequestMapping("/gameplay")
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TicTacToeGameController {
 
     private final PlayGameRestService playGameRestService;
@@ -25,6 +26,7 @@ public class TicTacToeGameController {
     public TicTacToeGameController(PlayGameRestService playGameRestService) {
         this.playGameRestService = playGameRestService;
     }
+
 
     @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MoveResp> processMove(@Valid @RequestBody Move move){
