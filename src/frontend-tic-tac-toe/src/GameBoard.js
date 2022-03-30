@@ -34,7 +34,8 @@ function GameBoard({
                 <Button onClick={startNewGame} colorScheme="teal" mt="1rem">Start New Game</Button>
             </>
         )
-    } else if (player1 && player2) {
+    }
+    if (player1 && player2) {
         return (
             <Box textAlign="center">
                 <PlayerToMove id={idToMove}/>

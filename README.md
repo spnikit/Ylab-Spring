@@ -194,6 +194,6 @@ npm start
     
     localhost:8080/gameplay/new
 
-И уже затем вновь переходить к ходам. 
+И уже затем вновь переходить к регистрации игроков. 
 
-    localhost:8080/gameplay/move
+    localhost:8080/gameplay/register/player
