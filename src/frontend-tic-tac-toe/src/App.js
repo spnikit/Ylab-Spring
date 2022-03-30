@@ -118,7 +118,7 @@ function App() {
                     <Button onClick={startNewGame} colorScheme="teal" mt="1rem">Start New Game</Button>
                 </>
             )
-        } else {
+        } else if(state.player1 && state.player2) {
             return (
                 <CellGrid>
                     {cells.map(cell => <Cell key={cell} id={state.idToMove} makeMove={() => makeMove(cell)}/>)}

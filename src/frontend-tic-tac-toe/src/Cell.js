@@ -14,8 +14,6 @@ const handleOnClick = () => {
     if(isClicked){
         return;
     }
-
-    console.log("clicked!")
     makeMove();
     setSymbol(symbolToSet);
     setIsClicked(true);
