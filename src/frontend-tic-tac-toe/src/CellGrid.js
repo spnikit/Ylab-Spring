@@ -6,8 +6,8 @@ function CellGrid({children}) {
     return (
         <Grid templateColumns="repeat(3, 1fr)"
               templateRows="repeat(3, 1fr)"
-                maxWidth={300}
-        justifyContent="center">
+              maxWidth={300}
+              justifyContent="center">
             {React.Children.map(children, child => {
                 return (
                     <GridItem>
