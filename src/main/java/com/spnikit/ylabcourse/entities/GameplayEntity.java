@@ -25,12 +25,10 @@ public class GameplayEntity {
 
     public GameplayEntity(String player1,
                           String player2,
-                          String result,
-                          List<StepEntity> steps) {
+                          String result) {
         this.player1 = player1;
         this.player2 = player2;
         this.result = result;
-        this.steps = steps;
     }
 
 

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface StepRepository extends CrudRepository<StepEntity, Long> {
 
-    List<StepEntity>findByGameplaye(GameplayEntity gameplay, Sort sort);
+    List<StepEntity>findByGameplay(GameplayEntity gameplay, Sort sort);
 }
