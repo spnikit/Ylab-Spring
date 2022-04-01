@@ -1,0 +1,48 @@
+{
+  "Gameplay" : {
+    "Player" : [ {
+      "_id" : 1,
+      "_name" : "serge",
+      "_symbol" : "X"
+    }, {
+      "_id" : 2,
+      "_name" : "peter",
+      "_symbol" : "O"
+    } ],
+    "Game" : {
+      "Step" : [ {
+        "xCoord" : 0,
+        "yCoord" : 0,
+        "_num" : 1,
+        "_playerId" : "1"
+      }, {
+        "xCoord" : 1,
+        "yCoord" : 1,
+        "_num" : 2,
+        "_playerId" : "2"
+      }, {
+        "xCoord" : 0,
+        "yCoord" : 1,
+        "_num" : 3,
+        "_playerId" : "1"
+      }, {
+        "xCoord" : 2,
+        "yCoord" : 2,
+        "_num" : 4,
+        "_playerId" : "2"
+      }, {
+        "xCoord" : 0,
+        "yCoord" : 2,
+        "_num" : 5,
+        "_playerId" : "1"
+      } ]
+    },
+    "GameResult" : {
+      "Player" : {
+        "_id" : 1,
+        "_name" : "serge",
+        "_symbol" : "X"
+      }
+    }
+  }
+}

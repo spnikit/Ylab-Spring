@@ -2,12 +2,12 @@
 
 ## Задания предыдущих уроков
 
-- [lesson 4 README](LESSON4_README.MD)
+- [lesson 4 README](previous-readme/LESSON4_README.MD)
 
 ---
 ## Предыдущие версии текущего задания
 
-- [версия 1.0](lesson5_1.0.md)
+- [версия 1.0](previous-readme/lesson5_1.0.md)
 ---
 
 ## Задание урока 5
@@ -67,7 +67,7 @@ npm start
 от 1 до 9 включительно, согласно цифровому обозначению полей игрового
 поля (numpad)
 
-![tic-tac-toe board](img_1.png)
+![tic-tac-toe board](readme-images/img_1.png)
 
 Ключ `playerId` принимает значения типа `number` `1` или
 `2` соответственно по номерам игроков. Игру всегда начинает игрок `1`.
