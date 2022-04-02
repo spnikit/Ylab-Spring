@@ -98,6 +98,7 @@ public class GameplayEntity {
                 ", player1='" + player1 + '\'' +
                 ", player2='" + player2 + '\'' +
                 ", result='" + result + '\'' +
+                ", steps=" + steps +
                 '}';
     }
 }

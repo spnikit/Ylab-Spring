@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.transaction.Transactional;
+
 @SpringBootApplication
 public class YlabCourseApplication {
 
@@ -34,7 +36,6 @@ public class YlabCourseApplication {
             stepRepository.save(new StepEntity(3, 3, 4, 2, gameplayEntity));
 
 
-            System.out.println(gameplayRepository.findAll());
 
         };
     }
