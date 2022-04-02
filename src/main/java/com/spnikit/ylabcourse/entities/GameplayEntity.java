@@ -15,7 +15,7 @@ public class GameplayEntity {
     private String player2;
     private String result;
 
-    @OneToMany(mappedBy = "gameplay")
+    @OneToMany(mappedBy = "gameplay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StepEntity> steps;
 
 
@@ -98,7 +98,6 @@ public class GameplayEntity {
                 ", player1='" + player1 + '\'' +
                 ", player2='" + player2 + '\'' +
                 ", result='" + result + '\'' +
-                ", steps=" + steps +
                 '}';
     }
 }

@@ -15,7 +15,7 @@ public class StepEntity {
     private int number;
     private int playerId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "gameplay_id", nullable = false)
     private GameplayEntity gameplay;
 
@@ -111,7 +111,6 @@ public class StepEntity {
                 ", pointY=" + pointY +
                 ", number=" + number +
                 ", playerId=" + playerId +
-                ", gameplay=" + gameplay +
                 '}';
     }
 }

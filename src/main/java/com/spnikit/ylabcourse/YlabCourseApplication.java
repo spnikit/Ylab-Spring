@@ -33,6 +33,9 @@ public class YlabCourseApplication {
             stepRepository.save(new StepEntity(2, 2, 3, 1, gameplayEntity));
             stepRepository.save(new StepEntity(3, 3, 4, 2, gameplayEntity));
 
+
+            System.out.println(gameplayRepository.findAll());
+
         };
     }
 }
