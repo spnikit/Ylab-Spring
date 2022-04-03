@@ -8,4 +8,5 @@ public interface DBStorageService<T> {
 
     void save(T t);
     List<T> getGameplays();
+    T getLastGameplay();
 }

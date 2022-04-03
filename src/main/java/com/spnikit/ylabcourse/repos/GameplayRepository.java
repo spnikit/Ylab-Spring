@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface GameplayRepository extends CrudRepository<GameplayEntity, Long> {
 
+    GameplayEntity findTopByOrderByIdDesc();
 }

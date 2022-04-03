@@ -49,6 +49,11 @@ public class TicTacToeGameController {
         return this.dbStorageService.getGameplays();
     }
 
+    @GetMapping("/result/last")
+    public Gameplay getLastGameplay() {
+        return this.dbStorageService.getLastGameplay();
+    }
+
     @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MoveResp> processMove(@Valid @RequestBody Move move) {
 

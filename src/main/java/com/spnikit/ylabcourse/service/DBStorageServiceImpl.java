@@ -56,7 +56,7 @@ public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
         });
     }
 
-
+    @Override
     public List<Gameplay> getGameplays() {
 
         var gameplayEntities = this.gameplayRepository.findAll();
@@ -67,5 +67,13 @@ public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
                 .collect(Collectors.toList());
 
         return gameplays;
+    }
+
+    @Override
+    public Gameplay getLastGameplay() {
+        var gameplayEntity = this.gameplayRepository.findTopByOrderByIdDesc();
+
+        return Utils.convertDBEntityToGameplay(
+                Objects.requireNonNull(gameplayEntity));
     }
 }
