@@ -1,7 +1,7 @@
 package com.spnikit.ylabcourse.controller;
 
 
-import com.spnikit.ylabcourse.service.StorageServiceImpl;
+import com.spnikit.ylabcourse.service.FileUploadImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FileUploadController {
 
 
-    private final StorageServiceImpl storageServiceImpl;
+    private final FileUploadImpl storageServiceImpl;
 
     @Autowired
-    public FileUploadController(StorageServiceImpl storageServiceImpl) {
+    public FileUploadController(FileUploadImpl storageServiceImpl) {
         this.storageServiceImpl = storageServiceImpl;
     }
 

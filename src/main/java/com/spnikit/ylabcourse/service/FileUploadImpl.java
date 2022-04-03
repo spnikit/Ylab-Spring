@@ -9,12 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Service
-public class StorageServiceImpl implements StorageService {
+public class FileUploadImpl implements FileUpload {
 
     private final PlayGameFromFileService playGameService;
 
     @Autowired
-    public StorageServiceImpl(PlayGameFromFileService playGameService) {
+    public FileUploadImpl(PlayGameFromFileService playGameService) {
         this.playGameService = playGameService;
     }
 
