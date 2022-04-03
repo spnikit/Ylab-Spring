@@ -5,14 +5,18 @@ import com.spnikit.ylabcourse.entities.StepEntity;
 import com.spnikit.ylabcourse.game.Gameplay;
 import com.spnikit.ylabcourse.repos.GameplayRepository;
 import com.spnikit.ylabcourse.repos.StepRepository;
+import com.spnikit.ylabcourse.shared.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
-public class DBStorageServiceImpl implements DBStorageService {
+public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
 
 
     private final GameplayRepository gameplayRepository;
@@ -33,7 +37,7 @@ public class DBStorageServiceImpl implements DBStorageService {
         var player1Name = gameplay.getPlayer1().getName();
         var player2Name = gameplay.getPlayer2().getName();
         var result = gameplay.getGameResult() != null ?
-                          gameplay.getGameResult().getName() : null;
+                gameplay.getGameResult().getName() : null;
 
 
         var gameplayEntityToSaveInDb = new GameplayEntity(player1Name, player2Name, result);
@@ -50,5 +54,18 @@ public class DBStorageServiceImpl implements DBStorageService {
 
             this.stepRepository.save(stepEntityToSaveInDB);
         });
+    }
+
+
+    public List<Gameplay> getGameplays() {
+
+        var gameplayEntities = this.gameplayRepository.findAll();
+
+        var gameplays = StreamSupport
+                .stream(gameplayEntities.spliterator(), false)
+                .map(Utils::convertDBEntityToGameplay)
+                .collect(Collectors.toList());
+
+        return gameplays;
     }
 }

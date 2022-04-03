@@ -21,6 +21,17 @@ public class Gameplay {
         this.steps = steps;
     }
 
+    public Gameplay(){}
+
+    public Gameplay(Player player1, Player player2, Player gameResult, List<Step> steps) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.gameResult = gameResult;
+        this.steps = steps;
+        this.players.add(player1);
+        this.players.add(player2);
+    }
+
     @JsonIgnore
     public Player getPlayer1() {
         return player1;

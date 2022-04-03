@@ -1,8 +1,18 @@
 package com.spnikit.ylabcourse.shared;
 
+import com.spnikit.ylabcourse.entities.GameplayEntity;
+import com.spnikit.ylabcourse.entities.StepEntity;
+import com.spnikit.ylabcourse.game.Gameplay;
+import com.spnikit.ylabcourse.game.Player;
+import com.spnikit.ylabcourse.game.PlayerNumber;
+import com.spnikit.ylabcourse.game.Step;
+
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 public class Utils {
 
-    public static int[] convertNumpadValuesToXYCoordinates(int numpadVal){
+    public static int[] convertNumpadValuesToXYCoordinates(int numpadVal) {
 
         switch (numpadVal) {
             case 1 -> {
@@ -36,5 +46,47 @@ public class Utils {
                 throw new IllegalArgumentException("value should be from 1 to 9");
             }
         }
+    }
+
+    public static Gameplay convertDBEntityToGameplay(GameplayEntity entity) {
+        Objects.requireNonNull(entity, "GameplayEntity can't be null while converting to Gameplay");
+
+        var player1 = new Player(entity.getPlayer1(), PlayerNumber.ONE);
+        var player2 = new Player(entity.getPlayer2(), PlayerNumber.TWO);
+        Player gameResult = null;
+        var result = entity.getResult();
+
+        if (result != null) {
+            if (result.equalsIgnoreCase(player1.getName())) {
+                gameResult = player1;
+            } else if (result.equalsIgnoreCase((player2.getName()))) {
+                gameResult = player2;
+            }
+        }
+
+        var steps = entity.getSteps().stream().map(Utils::convertDBEntityToStep)
+                .collect(Collectors.toList());
+
+
+        return new Gameplay(
+                player1,
+                player2,
+                gameResult,
+                steps
+        );
+    }
+
+
+    public static Step convertDBEntityToStep(StepEntity entity) {
+
+        Objects.requireNonNull(entity, "StepEntity can't be null while converting to Step");
+
+
+        return new Step(
+                entity.getNumber(),
+                entity.getPointX(),
+                entity.getPointY(),
+                entity.getPlayerId()
+        );
     }
 }

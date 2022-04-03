@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Objects;
 
 @RequestMapping("/gameplay")
 @RestController
@@ -22,28 +24,15 @@ import javax.validation.Valid;
 public class TicTacToeGameController {
 
     private final PlayGameRestService playGameRestService;
-    private final DBStorageService dbStorageService;
+    private final DBStorageService<Gameplay> dbStorageService;
 
     @Autowired
-    public TicTacToeGameController(PlayGameRestService playGameRestService, DBStorageService dbStorageService) {
+    public TicTacToeGameController(PlayGameRestService playGameRestService,
+                                   DBStorageService<Gameplay> dbStorageService) {
         this.playGameRestService = playGameRestService;
         this.dbStorageService = dbStorageService;
     }
 
-
-    @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MoveResp> processMove(@Valid @RequestBody Move move) {
-
-        var responseBody = playGameRestService.makeMove(move);
-
-//        if game is over save gameplay in DB
-        if (responseBody.isDraw() || responseBody.getWinnerId() != null) {
-            var gameplay = this.playGameRestService.getGameplay();
-            this.dbStorageService.save(gameplay);
-        }
-
-        return ResponseEntity.ok().body(responseBody);
-    }
 
     @GetMapping(value = "/new")
     public ResponseEntity<NewGameResp> restartGame() {
@@ -56,17 +45,28 @@ public class TicTacToeGameController {
     }
 
     @GetMapping("/result")
-    public ResponseEntity<Gameplay> getGameplay() {
-        var gameplay = this.playGameRestService.getGameplay();
+    public List<Gameplay> getGameplay() {
+        return this.dbStorageService.getGameplays();
+    }
 
-        return ResponseEntity.ok(gameplay);
+    @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<MoveResp> processMove(@Valid @RequestBody Move move) {
+
+        var responseBody = playGameRestService.makeMove(move);
+
+        // if game is over save gameplay in DB
+        if (responseBody.isDraw() || responseBody.getWinnerId() != null) {
+            var gameplay = this.playGameRestService.getGameplay();
+            this.dbStorageService.save(Objects.requireNonNull(gameplay));
+        }
+
+        return ResponseEntity.ok().body(responseBody);
     }
 
     @PostMapping("/register/player")
     public ResponseEntity<Player> registerPlayer(@Valid @RequestBody PlayerRequest player) {
-
         var playerRegistered = this.playGameRestService.registerPlayer(player);
-
         return ResponseEntity.ok(playerRegistered);
     }
+
 }

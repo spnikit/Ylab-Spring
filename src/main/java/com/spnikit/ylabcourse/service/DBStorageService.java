@@ -2,7 +2,10 @@ package com.spnikit.ylabcourse.service;
 
 import com.spnikit.ylabcourse.game.Gameplay;
 
-public interface DBStorageService {
+import java.util.List;
 
-    void save(Gameplay gameplay);
+public interface DBStorageService<T> {
+
+    void save(T t);
+    List<T> getGameplays();
 }
