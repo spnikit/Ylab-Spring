@@ -20,7 +20,6 @@ public class GameplayEntityTest {
     @Autowired
     private GameplayRepository gameplayRepository;
 
-
     @Test
     @Transactional
     public void getGameplayById() {
