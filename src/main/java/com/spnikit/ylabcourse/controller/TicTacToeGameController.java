@@ -46,12 +46,12 @@ public class TicTacToeGameController {
 
     @GetMapping("/result")
     public List<Gameplay> getGameplay() {
-        return this.dbStorageService.getGameplays();
+        return this.dbStorageService.getAll();
     }
 
     @GetMapping("/result/last")
     public Gameplay getLastGameplay() {
-        return this.dbStorageService.getLastGameplay();
+        return this.dbStorageService.getLast();
     }
 
     @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
