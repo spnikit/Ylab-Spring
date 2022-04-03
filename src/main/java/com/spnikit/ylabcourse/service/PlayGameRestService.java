@@ -12,7 +12,7 @@ import java.util.Objects;
 public class PlayGameRestService {
 
     private GameWithRestApi game = new GameWithRestApi();
-    private final GameplayConstructor gameplayConstructor = new GameplayConstructor(game);
+    private GameplayConstructor gameplayConstructor = new GameplayConstructor(game);
 
     public MoveResp makeMove(Move move) {
 
@@ -33,6 +33,7 @@ public class PlayGameRestService {
 
     public void setNewGame() {
         game = new GameWithRestApi();
+        gameplayConstructor = new GameplayConstructor(game);
     }
 
     public Gameplay getGameplay() {
