@@ -1,9 +1,9 @@
 import './App.css';
 import {Container} from '@chakra-ui/react'
 import {useState} from "react";
-import AlertBlock from "./AlertBlock";
-import GameBoard from "./GameBoard";
-import DisplayPlayerInput from "./DisplayPlayerInput";
+import AlertBlock from "./components/AlertBlock";
+import GameBoard from "./components/GameBoard";
+import DisplayPlayerInput from "./components/DisplayPlayerInput";
 
 function App() {
     const [state, setState] = useState({
