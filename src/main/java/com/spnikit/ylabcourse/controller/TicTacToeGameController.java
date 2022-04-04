@@ -1,6 +1,7 @@
 package com.spnikit.ylabcourse.controller;
 
 
+import com.spnikit.ylabcourse.exсeption.DBException;
 import com.spnikit.ylabcourse.game.Gameplay;
 import com.spnikit.ylabcourse.game.Player;
 import com.spnikit.ylabcourse.request.model.Move;
@@ -45,13 +46,19 @@ public class TicTacToeGameController {
     }
 
     @GetMapping("/result")
-    public List<Gameplay> getGameplay() {
+    public List<Gameplay> getAllGameplays() {
         return this.dbStorageService.getAll();
     }
 
-    @GetMapping("/result/last")
-    public Gameplay getLastGameplay() {
-        return this.dbStorageService.getLast();
+    @GetMapping(value = "/result/last", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Gameplay getLastGameplay() throws DBException {
+        var gameplay = this.dbStorageService.getLast();
+
+        if (gameplay.isEmpty()) {
+            throw new DBException("Can't retrieve last gameplay from DB");
+        }
+
+        return gameplay.get();
     }
 
     @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)

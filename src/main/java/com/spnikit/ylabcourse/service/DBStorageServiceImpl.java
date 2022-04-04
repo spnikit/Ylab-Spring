@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -70,10 +71,15 @@ public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
     }
 
     @Override
-    public Gameplay getLast() {
+    public Optional<Gameplay> getLast() {
         var gameplayEntity = this.gameplayRepository.findTopByOrderByIdDesc();
 
-        return Utils.convertDBEntityToGameplay(
-                Objects.requireNonNull(gameplayEntity));
+        if(gameplayEntity.isEmpty()){
+            return Optional.empty();
+        }
+
+        var gameplay = Utils.convertDBEntityToGameplay(gameplayEntity.get());
+
+        return Optional.of(gameplay);
     }
 }
