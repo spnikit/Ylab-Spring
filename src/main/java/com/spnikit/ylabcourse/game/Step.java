@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Step{
@@ -52,6 +54,19 @@ public class Step{
         this.playerNumber = playerNumber;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Step step = (Step) o;
+        return number == step.number && xCoord == step.xCoord && yCoord == step.yCoord && playerNumber == step.playerNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, xCoord, yCoord, playerNumber);
+    }
 
     @Override
     public String toString() {

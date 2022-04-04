@@ -114,6 +114,20 @@ public class Gameplay {
         setGameResult(map.get("Player"));
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gameplay gameplay = (Gameplay) o;
+        return player1.equals(gameplay.player1) && player2.equals(gameplay.player2) && Objects.equals(gameResult, gameplay.gameResult);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(player1, player2, gameResult);
+    }
+
     @Override
     public String toString() {
         return "Gameplay{" +
