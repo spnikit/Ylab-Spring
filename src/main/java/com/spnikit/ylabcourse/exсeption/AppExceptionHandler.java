@@ -1,4 +1,4 @@
-package com.spnikit.ylabcourse.exeption;
+package com.spnikit.ylabcourse.exсeption;
 
 
 import org.springframework.http.HttpHeaders;
