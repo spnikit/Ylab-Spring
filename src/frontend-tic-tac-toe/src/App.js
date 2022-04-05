@@ -4,6 +4,7 @@ import {useState} from "react";
 import AlertBlock from "./components/AlertBlock";
 import GameBoard from "./components/GameBoard";
 import DisplayPlayerInput from "./components/DisplayPlayerInput";
+import ReplayGameBoard from "./components/ReplayGameBoard";
 
 function App() {
     const [state, setState] = useState({
@@ -12,8 +13,19 @@ function App() {
         idToMove: 1,
         winner: "",
         draw: false,
-        message: ""
+        message: "",
+        status: "game"
     });
+
+
+    const [replayState, setReplayState] = useState({
+        replayMoves: [new Array(9).fill(" ")],
+        pointer: 0,
+    });
+    const {replayMoves, pointer} = replayState;
+    const currentReplayMoves = (pointer < replayMoves.length) ?
+        replayMoves[pointer] :
+        replayMoves[replayMoves.length - 1]
 
 
     const makeMove = (cellNumber) => {
@@ -67,7 +79,8 @@ function App() {
                     ...state,
                     player1: data["_id"] === 1 ? data["_name"] : state.player1,
                     player2: data["_id"] === 2 ? data["_name"] : state.player2,
-                    message: ""
+                    message: "",
+                    status: "game"
                 })
             })
             .catch(console.log)
@@ -86,7 +99,13 @@ function App() {
                     idToMove: 1,
                     winner: "",
                     draw: false,
-                    message: data?.message
+                    message: data?.message,
+                    status: "game"
+                })
+
+                setReplayState({
+                    replayMoves: [new Array(9).fill(" ")],
+                    pointer: 0,
                 })
             }).catch(console.log)
 
@@ -94,13 +113,23 @@ function App() {
     }
 
     return (
+
         <Container centerContent mt="3rem">
 
-            <DisplayPlayerInput {...state} setPlayerName={setPlayerName} />
+            {state.status === "replay" &&
+                <ReplayGameBoard cells={currentReplayMoves}/>}
+
+            <DisplayPlayerInput {...state} setPlayerName={setPlayerName}/>
 
             {state.message && <AlertBlock message={state.message} status="error"/>}
 
-            <GameBoard {...state} makeMove={makeMove} startNewGame={startNewGame} />
+            <GameBoard state={state}
+                       makeMove={makeMove}
+                       startNewGame={startNewGame}
+                       setState={setState}
+                       replayState={replayState}
+                       setReplayState={setReplayState}
+            />
 
         </Container>
 

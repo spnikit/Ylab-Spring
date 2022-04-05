@@ -3,17 +3,18 @@ import {Box, Button} from "@chakra-ui/react";
 import PlayerToMove from "./PlayerToMove";
 import CellGrid from "./CellGrid";
 import Cell from "./Cell";
+import ReplayButton from "./ReplayButton";
 
 
-function GameBoard({
-                       winner,
-                       draw,
-                       player1,
-                       player2,
-                       startNewGame,
-                       makeMove,
-                       idToMove
-                   }) {
+function GameBoard({startNewGame, makeMove, state, setState, replayState, setReplayState}) {
+
+    const {
+        winner,
+        draw,
+        player1,
+        player2,
+        idToMove
+    } = state;
 
     const winnerName = winner === 1 ?
         player1 :
@@ -32,6 +33,9 @@ function GameBoard({
             <>
                 <AlertBlock status={status} message={message}/>
                 <Button onClick={startNewGame} colorScheme="teal" mt="1rem">Start New Game</Button>
+                <ReplayButton setState={setState}
+                              {...replayState}
+                              setReplayState={setReplayState}/>
             </>
         )
     }

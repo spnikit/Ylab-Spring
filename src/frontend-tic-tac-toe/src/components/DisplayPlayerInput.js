@@ -1,9 +1,9 @@
 import PlayerInput from "./PlayerInput";
 
 
-function DisplayPlayerInput({player1,  player2, setPlayerName}){
+function DisplayPlayerInput({player1, player2, setPlayerName}) {
 
-    if (player1 &&player2) {
+    if (player1 && player2) {
         return null;
     }
 
