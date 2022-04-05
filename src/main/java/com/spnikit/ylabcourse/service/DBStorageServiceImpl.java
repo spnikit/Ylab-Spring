@@ -1,10 +1,10 @@
 package com.spnikit.ylabcourse.service;
 
-import com.spnikit.ylabcourse.entities.GameplayEntity;
-import com.spnikit.ylabcourse.entities.StepEntity;
-import com.spnikit.ylabcourse.game.Gameplay;
-import com.spnikit.ylabcourse.repos.GameplayRepository;
-import com.spnikit.ylabcourse.repos.StepRepository;
+import com.spnikit.ylabcourse.db.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.StepEntity;
+import com.spnikit.ylabcourse.game.model.Gameplay;
+import com.spnikit.ylabcourse.db.repos.GameplayRepository;
+import com.spnikit.ylabcourse.db.repos.StepRepository;
 import com.spnikit.ylabcourse.shared.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

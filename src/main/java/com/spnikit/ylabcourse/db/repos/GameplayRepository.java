@@ -1,6 +1,6 @@
-package com.spnikit.ylabcourse.repos;
+package com.spnikit.ylabcourse.db.repos;
 
-import com.spnikit.ylabcourse.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.GameplayEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

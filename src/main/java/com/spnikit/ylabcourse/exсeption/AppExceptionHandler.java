@@ -32,12 +32,16 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        var fieldError = ex.getFieldError();
+        String errorMessageDescription;
 
-        var errorMessageDescription = ex.getFieldError().getDefaultMessage();
-
-        if (errorMessageDescription == null) {
+        if (fieldError == null) {
             errorMessageDescription = ex.toString();
+        } else {
+
+            errorMessageDescription = ex.getFieldError().getDefaultMessage();
         }
+
 
         var errorMessage = new ErrorMessage(errorMessageDescription,
                 LocalDateTime.now().withNano(0));

@@ -1,7 +1,7 @@
-package com.spnikit.ylabcourse.repos;
+package com.spnikit.ylabcourse.db.repos;
 
-import com.spnikit.ylabcourse.entities.GameplayEntity;
-import com.spnikit.ylabcourse.entities.StepEntity;
+import com.spnikit.ylabcourse.db.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.StepEntity;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 

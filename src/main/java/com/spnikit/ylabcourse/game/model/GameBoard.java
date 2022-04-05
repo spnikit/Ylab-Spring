@@ -1,4 +1,6 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.model;
+
+import com.spnikit.ylabcourse.game.model.Token;
 
 import java.util.Arrays;
 import java.util.stream.Stream;

@@ -1,14 +1,30 @@
 package com.spnikit.ylabcourse.game;
 
+import com.spnikit.ylabcourse.game.io.IOGameManager;
+import com.spnikit.ylabcourse.game.io.IOManager;
+import com.spnikit.ylabcourse.game.listeners.GameStarted;
+import com.spnikit.ylabcourse.game.model.AbstractGame;
+import com.spnikit.ylabcourse.game.model.GameBoard;
+import com.spnikit.ylabcourse.game.model.Player;
+import com.spnikit.ylabcourse.game.model.PlayerNumber;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-public class GameWithConsole extends AbstractGame{
+public class GameWithConsole extends AbstractGame {
 
-    private final IOManager manager = new IOManager();
+    public IOGameManager manager;
+
+    public GameWithConsole(){
+        this.manager = new IOManager();
+    }
+
+    public void setManager(IOGameManager manager) {
+        this.manager = manager;
+    }
 
     private Player getPlayer(PlayerNumber pn) {
         Objects.requireNonNull(pn, "PlayerNumber object can't be null");
@@ -117,16 +133,8 @@ public class GameWithConsole extends AbstractGame{
         } while (doPlayAgain());
 
 
-        finishGame();
+        manager.finish();
         manager.printToConsole("Игра окончена!");
-    }
-
-    private void finishGame() {
-        try {
-            manager.finish();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean doPlayAgain() {
@@ -142,7 +150,5 @@ public class GameWithConsole extends AbstractGame{
 
         return response.equalsIgnoreCase("да");
     }
-
-
 
 }

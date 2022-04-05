@@ -1,4 +1,4 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.mappers;
 
 import java.util.Optional;
 

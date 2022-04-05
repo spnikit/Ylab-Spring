@@ -1,4 +1,4 @@
-package com.spnikit.ylabcourse.entities;
+package com.spnikit.ylabcourse.db.entities;
 
 
 import javax.persistence.*;

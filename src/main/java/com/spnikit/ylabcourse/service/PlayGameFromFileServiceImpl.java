@@ -1,8 +1,8 @@
 package com.spnikit.ylabcourse.service;
 
 import com.spnikit.ylabcourse.game.GameFromFile;
-import com.spnikit.ylabcourse.game.Gameplay;
-import com.spnikit.ylabcourse.game.GameplayToJsonMapper;
+import com.spnikit.ylabcourse.game.model.Gameplay;
+import com.spnikit.ylabcourse.game.mappers.GameplayToJsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

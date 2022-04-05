@@ -1,5 +1,6 @@
 package com.spnikit.ylabcourse.game;
 
+import com.spnikit.ylabcourse.game.model.*;
 import com.spnikit.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.shared.Utils;
 

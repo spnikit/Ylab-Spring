@@ -1,4 +1,10 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.mappers;
+
+import com.spnikit.ylabcourse.game.listeners.GameEnded;
+import com.spnikit.ylabcourse.game.listeners.GameStarted;
+import com.spnikit.ylabcourse.game.listeners.PlayerMoved;
+import com.spnikit.ylabcourse.game.listeners.PlayerRegistered;
+import com.spnikit.ylabcourse.game.model.*;
 
 import java.util.Optional;
 
@@ -18,7 +24,6 @@ public class GameplayConstructor implements PlayerMoved, PlayerRegistered, GameS
         if(gameplay.getSteps().size() <= 0){
             return Optional.empty();
         }
-
         return Optional.of(this.gameplay);
     }
 

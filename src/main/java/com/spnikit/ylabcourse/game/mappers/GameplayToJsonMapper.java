@@ -1,8 +1,10 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.mappers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.spnikit.ylabcourse.game.mappers.GameplayToFileMapper;
+import com.spnikit.ylabcourse.game.model.Gameplay;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;

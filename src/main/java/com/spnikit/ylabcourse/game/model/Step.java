@@ -1,4 +1,4 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.model;
 
 
 import com.fasterxml.jackson.annotation.JsonGetter;

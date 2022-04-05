@@ -1,4 +1,9 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.model;
+
+import com.spnikit.ylabcourse.game.listeners.GameEnded;
+import com.spnikit.ylabcourse.game.listeners.GameStarted;
+import com.spnikit.ylabcourse.game.listeners.PlayerMoved;
+import com.spnikit.ylabcourse.game.listeners.PlayerRegistered;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +49,11 @@ public abstract class AbstractGame {
     public void notifyGameEndListeners(Player p) {
         gameEndListeners.forEach(listener -> listener.onGameEnd(p));
     }
+
+
+
+
+
 
     public Player getPlayer1() {
         return player1;

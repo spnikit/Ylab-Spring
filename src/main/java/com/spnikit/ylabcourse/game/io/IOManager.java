@@ -1,4 +1,4 @@
-package com.spnikit.ylabcourse.game;
+package com.spnikit.ylabcourse.game.io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,9 +10,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-class IOManager {
-    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+public class IOManager implements IOGameManager {
+    private final BufferedReader reader;
 
+    public IOManager() {
+        this.reader = new BufferedReader(new InputStreamReader(System.in));
+    }
 
     public Optional<String> readStringFromConsole() {
 
@@ -32,7 +35,7 @@ class IOManager {
 
     }
 
-    public Optional<String> readFromConsole() {
+    private Optional<String> readFromConsole() {
 
         try {
             String line = reader.readLine().trim();
@@ -50,15 +53,12 @@ class IOManager {
         if (value.isEmpty()) {
 
             return OptionalInt.empty();
-
         }
 
         return parseInt(value.get());
-
-
     }
 
-    public OptionalInt parseInt(String s) {
+    private OptionalInt parseInt(String s) {
         try {
             return OptionalInt.of(Integer.parseInt(s));
         } catch (NumberFormatException e) {
@@ -71,13 +71,16 @@ class IOManager {
     }
 
 
-    public void finish() throws IOException {
-        reader.close();
+    public void finish() {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
     public void writeMatchResults(String results) {
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("./gameResults.txt"),
+        try (var writer = Files.newBufferedWriter(Paths.get("./gameResults.txt"),
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND)
         ) {
             writer.write(results + "\n");
@@ -86,3 +89,4 @@ class IOManager {
         }
     }
 }
+

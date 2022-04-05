@@ -1,23 +1,29 @@
 package com.spnikit.ylabcourse.game;
 
+import com.spnikit.ylabcourse.game.io.IOGameManager;
+import com.spnikit.ylabcourse.game.io.IOManager;
+import com.spnikit.ylabcourse.game.model.AbstractGame;
+import com.spnikit.ylabcourse.game.model.GameBoard;
+import com.spnikit.ylabcourse.game.model.Gameplay;
+import com.spnikit.ylabcourse.game.model.Player;
+
 import java.io.IOException;
 import java.util.Objects;
 
-public class GameFromFile extends AbstractGame{
-    private final IOManager manager = new IOManager();
+public class GameFromFile extends AbstractGame {
+    public IOGameManager manager;
 
-    private void finishGame() {
-        try {
-            manager.finish();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public GameFromFile(){
+        this.manager = new IOManager();
+    }
+
+    public void setManager(IOGameManager manager) {
+        this.manager = manager;
     }
 
     public void play(Gameplay gameplay) {
 
         Objects.requireNonNull(gameplay, "Gameplay object can't be null");
-
 
         manager.printToConsole("Привет, сейчас начнется игра в крестики-нолики");
 
@@ -33,8 +39,7 @@ public class GameFromFile extends AbstractGame{
 
         replayOneRound(gameplay);
 
-
-        finishGame();
+        manager.finish();
         manager.printToConsole("Игра окончена!");
 
     }

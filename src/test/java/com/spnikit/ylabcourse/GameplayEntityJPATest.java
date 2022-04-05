@@ -1,10 +1,10 @@
 package com.spnikit.ylabcourse;
 
 
-import com.spnikit.ylabcourse.entities.GameplayEntity;
-import com.spnikit.ylabcourse.entities.StepEntity;
-import com.spnikit.ylabcourse.repos.GameplayRepository;
-import com.spnikit.ylabcourse.repos.StepRepository;
+import com.spnikit.ylabcourse.db.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.StepEntity;
+import com.spnikit.ylabcourse.db.repos.GameplayRepository;
+import com.spnikit.ylabcourse.db.repos.StepRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,8 +2,8 @@ package com.spnikit.ylabcourse.controller;
 
 
 import com.spnikit.ylabcourse.exсeption.DBException;
-import com.spnikit.ylabcourse.game.Gameplay;
-import com.spnikit.ylabcourse.game.Player;
+import com.spnikit.ylabcourse.game.model.Gameplay;
+import com.spnikit.ylabcourse.game.model.Player;
 import com.spnikit.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.request.model.PlayerRequest;
 import com.spnikit.ylabcourse.response.model.MoveResp;
@@ -11,7 +11,6 @@ import com.spnikit.ylabcourse.response.model.GeneralResponse;
 import com.spnikit.ylabcourse.service.DBStorageService;
 import com.spnikit.ylabcourse.service.PlayGameRestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

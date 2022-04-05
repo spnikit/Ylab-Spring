@@ -1,11 +1,11 @@
 package com.spnikit.ylabcourse;
 
-import com.spnikit.ylabcourse.entities.GameplayEntity;
-import com.spnikit.ylabcourse.entities.StepEntity;
-import com.spnikit.ylabcourse.game.Gameplay;
-import com.spnikit.ylabcourse.game.Player;
-import com.spnikit.ylabcourse.game.PlayerNumber;
-import com.spnikit.ylabcourse.game.Step;
+import com.spnikit.ylabcourse.db.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.StepEntity;
+import com.spnikit.ylabcourse.game.model.Gameplay;
+import com.spnikit.ylabcourse.game.model.Player;
+import com.spnikit.ylabcourse.game.model.PlayerNumber;
+import com.spnikit.ylabcourse.game.model.Step;
 import com.spnikit.ylabcourse.shared.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

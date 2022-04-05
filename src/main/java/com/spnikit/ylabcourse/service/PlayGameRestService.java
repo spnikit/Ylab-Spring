@@ -1,6 +1,10 @@
 package com.spnikit.ylabcourse.service;
 
 import com.spnikit.ylabcourse.game.*;
+import com.spnikit.ylabcourse.game.mappers.GameplayConstructor;
+import com.spnikit.ylabcourse.game.model.Gameplay;
+import com.spnikit.ylabcourse.game.model.Player;
+import com.spnikit.ylabcourse.game.model.PlayerNumber;
 import com.spnikit.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.request.model.PlayerRequest;
 import com.spnikit.ylabcourse.response.model.MoveResp;
