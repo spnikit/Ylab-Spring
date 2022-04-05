@@ -67,3 +67,7 @@ url: jdbc:h2:mem:ylabhomework
 ```
     localhost:8080/gameplay/result
 ```
+- На стороне Frontend-а теперь после завершения игры, можно запустить её
+повтор или начать новую:
+
+![повтор игры frontend](readme-images/front_replay_feature_button.png)
