@@ -68,6 +68,11 @@ url: jdbc:h2:mem:ylabhomework
 ```
     localhost:8080/gameplay/result
 ```
+- endpoint удаляет все записи
+```
+    localhost:8080/gameplay/result/delete/all
+```
+
 - На стороне Frontend-а теперь после завершения игры, можно запустить её
 повтор или начать новую:
 
