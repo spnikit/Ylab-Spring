@@ -81,4 +81,16 @@ public class TicTacToeGameController {
         return ResponseEntity.ok(playerRegistered);
     }
 
+    @DeleteMapping("/")
+    public ResponseEntity<?> deleteAllPlayers() throws DBException {
+
+        this.dbStorageService.deleteAll();
+
+        if(!this.dbStorageService.getAll().isEmpty()){
+            throw new DBException("Can't delete all gameplays!");
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

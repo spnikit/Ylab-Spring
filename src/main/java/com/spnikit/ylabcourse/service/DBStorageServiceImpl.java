@@ -82,4 +82,9 @@ public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
 
         return Optional.of(gameplay);
     }
+
+    @Override
+    public void deleteAll() {
+        this.gameplayRepository.deleteAll();
+    }
 }

@@ -8,4 +8,5 @@ public interface DBStorageService<T> {
     void save(T t);
     List<T> getAll();
     Optional<T> getLast();
+    void deleteAll();
 }
