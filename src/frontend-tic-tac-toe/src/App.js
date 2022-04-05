@@ -73,13 +73,15 @@ function App() {
             },
             body: jsonToSend
         })
-            .then(response => response.json())
+            .then(response => {
+                return response.json();
+            })
             .then(data => {
                 setState({
                     ...state,
                     player1: data["_id"] === 1 ? data["_name"] : state.player1,
                     player2: data["_id"] === 2 ? data["_name"] : state.player2,
-                    message: "",
+                    message: data.message,
                     status: "game"
                 })
             })
