@@ -42,19 +42,19 @@ public class Utils {
             case 9 -> {
                 return new int[]{2, 2};
             }
-            default -> {
-                throw new IllegalArgumentException("value should be from 1 to 9");
-            }
+            default -> throw new IllegalArgumentException("value should be from 1 to 9");
         }
     }
 
     public static Gameplay convertDBEntityToGameplay(GameplayEntity entity) {
         Objects.requireNonNull(entity, "GameplayEntity can't be null while converting to Gameplay");
 
-        var player1 = new Player(entity.getPlayer1(), PlayerNumber.ONE);
-        var player2 = new Player(entity.getPlayer2(), PlayerNumber.TWO);
+        var player1 = new Player(entity.getPlayer1().getName(), PlayerNumber.ONE);
+        var player2 = new Player(entity.getPlayer2().getName(), PlayerNumber.TWO);
         Player gameResult = null;
-        var result = entity.getResult();
+        var result = entity.getResult() != null ?
+                entity.getResult().getName():
+                null;
 
         if (result != null) {
             if (result.equalsIgnoreCase(player1.getName())) {

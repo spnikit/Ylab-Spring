@@ -1,6 +1,9 @@
 package com.spnikit.ylabcourse.db.entities;
 
 
+import com.spnikit.ylabcourse.game.model.Player;
+import com.spnikit.ylabcourse.game.model.Token;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -11,13 +14,21 @@ public class GameplayEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String player1;
-    private String player2;
-    private String result;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "player1_id", referencedColumnName = "id")
+    private PlayerEntity player1;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "player2_id", referencedColumnName = "id")
+    private PlayerEntity player2;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "result_id", referencedColumnName = "id")
+    private PlayerEntity result;
 
     @OneToMany(mappedBy = "gameplay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StepEntity> steps;
-
 
 
     protected GameplayEntity() {
@@ -26,11 +37,14 @@ public class GameplayEntity {
     public GameplayEntity(String player1,
                           String player2,
                           String result) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.result = result;
-    }
+        this.player1 = new PlayerEntity(player1, Token.X);
+        this.player2 = new PlayerEntity(player2, Token.O);
 
+        var token = result != null ?
+                result.equalsIgnoreCase(player1) ? Token.X : Token.O
+                : null;
+        this.result = new PlayerEntity(result, token);
+    }
 
 
     public Long getId() {
@@ -42,29 +56,29 @@ public class GameplayEntity {
         return this;
     }
 
-    public String getPlayer1() {
+    public PlayerEntity getPlayer1() {
         return player1;
     }
 
-    public GameplayEntity setPlayer1(String player1) {
+    public GameplayEntity setPlayer1(PlayerEntity player1) {
         this.player1 = player1;
         return this;
     }
 
-    public String getPlayer2() {
+    public PlayerEntity getPlayer2() {
         return player2;
     }
 
-    public GameplayEntity setPlayer2(String player2) {
+    public GameplayEntity setPlayer2(PlayerEntity player2) {
         this.player2 = player2;
         return this;
     }
 
-    public String getResult() {
+    public PlayerEntity getResult() {
         return result;
     }
 
-    public GameplayEntity setResult(String result) {
+    public GameplayEntity setResult(PlayerEntity result) {
         this.result = result;
         return this;
     }

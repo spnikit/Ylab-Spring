@@ -1,10 +1,12 @@
 package com.spnikit.ylabcourse.service;
 
 import com.spnikit.ylabcourse.db.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.PlayerEntity;
 import com.spnikit.ylabcourse.db.entities.StepEntity;
 import com.spnikit.ylabcourse.game.model.Gameplay;
 import com.spnikit.ylabcourse.db.repos.GameplayRepository;
 import com.spnikit.ylabcourse.db.repos.StepRepository;
+import com.spnikit.ylabcourse.game.model.Token;
 import com.spnikit.ylabcourse.shared.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,8 @@ public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
         var result = gameplay.getGameResult() != null ?
                 gameplay.getGameResult().getName() : null;
 
+        var resultToken = gameplay.getGameResult() != null ?
+                gameplay.getGameResult().getToken() : null;
 
         var gameplayEntityToSaveInDb = new GameplayEntity(player1Name, player2Name, result);
 
@@ -74,7 +78,7 @@ public class DBStorageServiceImpl implements DBStorageService<Gameplay> {
     public Optional<Gameplay> getLast() {
         var gameplayEntity = this.gameplayRepository.findTopByOrderByIdDesc();
 
-        if(gameplayEntity.isEmpty()){
+        if (gameplayEntity.isEmpty()) {
             return Optional.empty();
         }
 
