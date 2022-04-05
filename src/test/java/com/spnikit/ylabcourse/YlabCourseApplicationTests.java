@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,7 +33,6 @@ class YlabCourseApplicationTests {
     void contextLoads() {
         Assertions.assertNotNull(controller);
     }
-
 
 
     @Test
@@ -82,7 +81,12 @@ class YlabCourseApplicationTests {
     }
 
 
-
+    @Test
+    public void shouldDeleteAllAndReturnNoContent() throws Exception {
+        this.mockMvc.perform(
+                        delete("/gameplay/result/delete/all"))
+                .andExpect(status().isNoContent());
+    }
 
     private static String asJsonString(Object obj) {
 
@@ -93,5 +97,4 @@ class YlabCourseApplicationTests {
             throw new RuntimeException(e);
         }
     }
-
 }

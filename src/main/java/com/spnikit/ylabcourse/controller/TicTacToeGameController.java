@@ -7,10 +7,11 @@ import com.spnikit.ylabcourse.game.Player;
 import com.spnikit.ylabcourse.request.model.Move;
 import com.spnikit.ylabcourse.request.model.PlayerRequest;
 import com.spnikit.ylabcourse.response.model.MoveResp;
-import com.spnikit.ylabcourse.response.model.NewGameResp;
+import com.spnikit.ylabcourse.response.model.GeneralResponse;
 import com.spnikit.ylabcourse.service.DBStorageService;
 import com.spnikit.ylabcourse.service.PlayGameRestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,13 +37,13 @@ public class TicTacToeGameController {
 
 
     @GetMapping(value = "/new")
-    public ResponseEntity<NewGameResp> restartGame() {
+    public ResponseEntity<GeneralResponse> restartGame() {
 
         playGameRestService.setNewGame();
 
-        var response = new NewGameResp("New Game created!");
+        var response = new GeneralResponse("New Game created!");
 
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/result")
@@ -51,14 +52,10 @@ public class TicTacToeGameController {
     }
 
     @GetMapping(value = "/result/last", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Gameplay getLastGameplay() throws DBException {
+    public ResponseEntity<Gameplay> getLastGameplay() throws DBException {
         var gameplay = this.dbStorageService.getLast();
 
-        if (gameplay.isEmpty()) {
-            throw new DBException("Can't retrieve last gameplay from DB");
-        }
-
-        return gameplay.get();
+        return ResponseEntity.of(gameplay);
     }
 
     @PostMapping(value = "/move", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -72,7 +69,7 @@ public class TicTacToeGameController {
             this.dbStorageService.save(Objects.requireNonNull(gameplay));
         }
 
-        return ResponseEntity.ok().body(responseBody);
+        return ResponseEntity.ok(responseBody);
     }
 
     @PostMapping("/register/player")
@@ -81,7 +78,7 @@ public class TicTacToeGameController {
         return ResponseEntity.ok(playerRegistered);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/result/delete/all")
     public ResponseEntity<?> deleteAllPlayers() throws DBException {
 
         this.dbStorageService.deleteAll();
