@@ -52,11 +52,12 @@ url: jdbc:h2:mem:ylabhomework
 
 Функционал реализован на базе Spring Boot и Spring Data JPA Starter, 
 через ORM Hibernate.
+
 ---
 
 ### REST API
 
-Добавился некоторый функционал:
+Добавились некоторые возможности:
 
 - endpoint возвращает объект `Gamplay` в JSON представлении
 только последней сыгранной игры
