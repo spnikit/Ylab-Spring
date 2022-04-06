@@ -35,9 +35,9 @@ public class GameplayEntityJPATest {
     @Test
     public void shouldStoreAGameplayEntity() {
         GameplayEntity entity = gameplayRepository.save(new GameplayEntity("Serge", "Pete", null));
-        assertThat(entity).hasFieldOrProperty("player1");
-        assertThat(entity).hasFieldOrProperty("player2");
-        assertThat(entity).hasFieldOrProperty("result");
+        assertThat(entity).hasFieldOrPropertyWithValue("player1", new PlayerEntity("Serge", Token.X));
+        assertThat(entity).hasFieldOrPropertyWithValue("player2", new PlayerEntity("Pete", Token.O));
+        assertThat(entity).hasFieldOrPropertyWithValue("result", new PlayerEntity(null, null));
     }
 
     @Test
