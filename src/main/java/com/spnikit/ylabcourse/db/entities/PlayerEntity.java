@@ -2,6 +2,7 @@ package com.spnikit.ylabcourse.db.entities;
 
 
 import com.spnikit.ylabcourse.game.model.Token;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @Entity
 @Table(name = "players")
 public class PlayerEntity {

@@ -2,9 +2,11 @@ package com.spnikit.ylabcourse;
 
 
 import com.spnikit.ylabcourse.db.entities.GameplayEntity;
+import com.spnikit.ylabcourse.db.entities.PlayerEntity;
 import com.spnikit.ylabcourse.db.entities.StepEntity;
 import com.spnikit.ylabcourse.db.repos.GameplayRepository;
 import com.spnikit.ylabcourse.db.repos.StepRepository;
+import com.spnikit.ylabcourse.game.model.Token;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -33,9 +35,9 @@ public class GameplayEntityJPATest {
     @Test
     public void shouldStoreAGameplayEntity() {
         GameplayEntity entity = gameplayRepository.save(new GameplayEntity("Serge", "Pete", null));
-        assertThat(entity).hasFieldOrPropertyWithValue("player1", "Serge");
-        assertThat(entity).hasFieldOrPropertyWithValue("player2", "Pete");
-        assertThat(entity).hasFieldOrPropertyWithValue("result", null);
+        assertThat(entity).hasFieldOrProperty("player1");
+        assertThat(entity).hasFieldOrProperty("player2");
+        assertThat(entity).hasFieldOrProperty("result");
     }
 
     @Test
